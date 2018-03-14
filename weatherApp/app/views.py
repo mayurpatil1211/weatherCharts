@@ -232,19 +232,19 @@ def save_data(request):
 		t = threading.Thread(target=maxTemp, name='thread{}'.format(i), args=(i,))
 		threads_list.append(t)
 		t.start()
-		time.sleep(5)
+		# time.sleep(5)
 		t1 = threading.Thread(target=minTemp, name='thread{}'.format(i), args=(i,))
 		threads_list.append(t1)
 		t1.start()
-		time.sleep(5)
+		# time.sleep(5)
 		t2 = threading.Thread(target=meanTemp, name='thread{}'.format(i), args=(i,))
 		threads_list.append(t2)
 		t2.start()
-		time.sleep(5)
+		# time.sleep(5)
 		t3 = threading.Thread(target=rainfall, name='thread{}'.format(i), args=(i,))
 		threads_list.append(t3)
 		t3.start()
-		time.sleep(5)
+		# time.sleep(5)
 		t4 = threading.Thread(target=sunshine, name='thread{}'.format(i), args=(i,))
 		threads_list.append(t4)
 		t4.start()
@@ -326,6 +326,7 @@ def sunshineSearch(country, year):
 
 @api_view(['GET'])
 def get_data(request, country=None, year=None):
+    start_time = time.time()
     search_result={}
     search_result['maxTemp'] = {}
     search_result['minTemp'] = {}
@@ -347,6 +348,8 @@ def get_data(request, country=None, year=None):
     search_result['sunshine']['labels'], search_result['sunshine']['value']=sunshineSearch(country_obj.id, year)
     search_result['year'] = year
     search_result['country'] = country_obj.country
+    end = time.time()-start_time
+    print(end)
     return JsonResponse({'result':search_result}, status=200)
 
 
