@@ -1,0 +1,77 @@
+.custom_container{
+padding-top: 10px;
+}
+.navbar_items{
+font-weight: 600;
+font-size: 16px;
+}
+.action_buttons{
+width: 60px;
+font-size: 10px;
+padding: 5px;
+margin: 5px;
+}
+.country_year_block{
+padding: 15px;
+}
+.icons{
+width: 35px;
+padding-bottom: 15px;
+}
+.selectYear{
+width: 150%;
+}
+.new_data_btn{
+padding-top: 8px;
+padding-bottom: 8px;
+}
+.jumbotron{
+background-color: #f3f2f200;
+}
+body{
+padding: 0;
+margin: 0;
+overflow-x: hidden;
+font-family: 'Muli', sans-serif;
+}
+.expense_headings{
+border: 5px solid #77c043;
+padding: 10px;
+border-radius: 50px;
+font-weight: 600;
+}
+.chart_block{
+padding: 20px;
+border: 1px solid #ddd;
+margin: 45px;
+}
+.chart_heading{
+font-size: 20px;
+font-weight: 600;
+color: #424b52;
+}
+textarea {
+resize: none;
+}
+.show-hide-message.ng-hide-remove{
+-webkit-animation: zoomIn 0.3s both ease;
+-moz-animation: zoomIn 0.3s both ease;
+animation: zoomIn 0.3s both ease;
+}
+.spinner{
+-webkit-animation: spin 1s infinite;
+-moz-animation:spin 1s infinite;
+animation: spin 1s infinite;
+}
+@keyframes spin{
+from { transform:rotate(0deg); }
+to { transform:rotate(360deg); }
+}
+@-webkit-keyframes spin{
+from {-webkit-transform:rotate(0deg);}
+to {-webkit-transform:rotate(360deg);}
+}
+@-moz-keyframes spin{
+from {-moz-transform:rotate(0deg);}
+to { -moz-tranform:rotate(360deg); }
+}

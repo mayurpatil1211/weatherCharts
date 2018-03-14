@@ -1,0 +1,167 @@
+<!-- Button to save new data -->
+<div class="row text-center" ng-show="save_data">
+   <label>To Save New Data : <button class="btn btn-md- btn-primary" ng-click="save_new_data()">Click Here</button></label>
+</div>
+
+<!-- loading div's -->
+<div class="container">
+   <div class="row show-hide-message" ng-if="successMsg">
+      <div class="alert alert-success">{{successMsg}}</div>
+   </div>
+   <br>
+   <div class="row show-hide-message" ng-if="errorMsg">
+      <div class="alert alert-danger">{{errorMsg}}</div>
+   </div>
+   <div class="jumbotron text-center" ng-if="loading">
+      <span class="glyphicon glyphicon-repeat spinner"></span>
+      <p>Please Wait....!! Data being Saved in the Database it may take some Time.</p>
+   </div>
+</div>
+
+
+<div class="row col-md-12" style="text-align: center; margin-bottom: 25px;">
+   <h3 class="text-center update_heading"><span class="expense_headings">WEATHER READING CHART</span> </h3>
+</div>
+
+<!-- Chart Block -->
+<div class="container">
+   <form class="navbar-form text-center" ng-submit="startFilter(filter)" name="filterAttributes">
+      <div class="row">
+         <div class="col-md-3"></div>
+         <div class="col-md-6 text-center">
+            <div class="col-md-5">
+
+                <!-- Year List for Filter -->
+               <div class="form-group" style="padding: 10px;">
+                  <select class="form-control selectYear" ng-model="filter.year" name="selectYear" ng-options="year for year in years" required>
+                     <option value="">Select Year</option>
+                  </select>
+               </div>
+            </div>
+            <div class="col-md-5 grayscale_check">
+               <div class="form-group" style="padding: 10px;">
+                  <select class="form-control" ng-model="filter.country" name="selectCountry" required>
+                     <option value="">Select Country</option>
+                     <option value="UK">United Kingdom</option>
+                     <option value="Wales">Wales</option>
+                     <option value="England">England</option>
+                     <option value="Scotland">Scotland</option>
+                  </select>
+               </div>
+            </div>
+            <div class="col-md-2" style="padding: 10px;">
+               <button type="submit" class="btn btn-primary search_btn" ng-disabled="filterAttributes.selectYear.$error.required || filterAttributes.selectCountry.$error.required">FILTER</button>
+            </div>
+         </div>
+         <div class="col-md-3"></div>
+      </div>
+   </form>
+</div>
+
+<!-- Chart Block -->
+<div class="container">
+   <div class="col-md-5 chart_block">
+      <div class="row">
+         <div class="col-md-9 text-right">
+            <p class="text-center chart_heading">MAXIMUM TEPERATURE</p>
+         </div>
+         <div class="col-md-3 text-right">
+            <img src="images/maxTemp.png" class="icons">
+         </div>
+      </div>
+      <div class="row country_year_block">
+         <div class="col-md-6 class="text-left"">
+            <code>Country: {{country}}</code>
+         </div>
+         <div class="col-md-6 text-right">
+            <code>Year: {{year}} </code>
+         </div>
+      </div>
+      <canvas class="chart chart-line" chart-data="maxTempdata" chart-labels="minTemplabels" 
+         chart-series="series" chart-click="onClick"></canvas>
+   </div>
+   <div class="col-md-5 chart_block">
+      <div class="row">
+         <div class="col-md-9 text-right">
+            <p class="text-center chart_heading">MINIMUM TEPERATURE</p>
+         </div>
+         <div class="col-md-3 text-right">
+            <img src="images/minTemp.png" class="icons">
+         </div>
+      </div>
+      <div class="row country_year_block">
+         <div class="col-md-6 class="text-left"">
+            <code>Country: {{country}}</code>
+         </div>
+         <div class="col-md-6 text-right">
+            <code>Year: {{year}} </code>
+         </div>
+      </div>
+      <canvas class="chart chart-line" chart-data="minTempdata" chart-labels="minTemplabels" 
+         chart-series="series" chart-click="onClick"></canvas>
+   </div>
+   <div class="col-md-5 chart_block">
+      <div class="row">
+         <div class="col-md-9 text-right">
+            <p class="text-center chart_heading">MEAN TEPERATURE</p>
+         </div>
+         <div class="col-md-3 text-right">
+            <img src="images/meanTemp.png" class="icons">
+         </div>
+      </div>
+      <div class="row country_year_block">
+         <div class="col-md-6 class="text-left"">
+            <code>Country: {{country}}</code>
+         </div>
+         <div class="col-md-6 text-right">
+            <code>Year: {{year}} </code>
+         </div>
+      </div>
+      <canvas class="chart chart-line" chart-data="meanTempdata" chart-labels="meanTemplabels" 
+         chart-series="series" chart-click="onClick"></canvas>
+   </div>
+   <div class="col-md-5 chart_block">
+      <div class="row">
+         <div class="col-md-9 text-right">
+            <p class="text-center chart_heading">RAINFALL</p>
+         </div>
+         <div class="col-md-3 text-right">
+            <img src="images/rain.png" class="icons">
+         </div>
+      </div>
+      <div class="row country_year_block">
+         <div class="col-md-6 class="text-left"">
+            <code>Country: {{country}}</code>
+         </div>
+         <div class="col-md-6 text-right">
+            <code>Year: {{year}} </code>
+         </div>
+      </div>
+      <canvas class="chart chart-line" chart-data="rainFalldata" chart-labels="rainFalllabels" 
+         chart-series="series" chart-click="onClick"></canvas>
+   </div>
+   <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 chart_block">
+         <div class="row">
+            <div class="col-md-9 text-right">
+               <p class="text-center chart_heading">SUNSHINE</p>
+            </div>
+            <div class="col-md-3 text-right">
+               <img src="images/sun.png" class="icons">
+            </div>
+         </div>
+         <div class="row country_year_block">
+            <div class="col-md-6 class="text-left"">
+               <code>Country: {{country}}</code>
+            </div>
+            <div class="col-md-6 text-right">
+               <code>Year: {{year}} </code>
+            </div>
+         </div>
+         <canvas class="chart chart-line" chart-data="sunshinedata" chart-labels="sunshinelabels" 
+            chart-series="series" chart-click="onClick"></canvas>
+      </div>
+      <div class="col-md-3"></div>
+   </div>
+</div>
