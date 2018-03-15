@@ -275,53 +275,38 @@ def save_data(request):
 
 ##########################-----------GET ALL DATA--------------#############
 def maxTempSearch(country, year):
-    labels=[]
-    values = []
     maxTemp = MaxTemp.objects.filter(country=country, year=year).first()
     serializers = GetMaxTempSerializer(maxTemp)
-    for i in serializers.data:
-        labels.append(i)
-        values.append(str(serializers.data.get(i)))
+    labels = [i for i in serializers.data]
+    values = [str(serializers.data.get(i)) for i in serializers.data]
     return labels, values
 
 def minTempSearch(country, year):
-    labels=[]
-    values = []
     maxTemp = MinTemp.objects.filter(country=country, year=year).first()
     serializers = GetMinTempSerializer(maxTemp)
-    for i in serializers.data:
-        labels.append(i)
-        values.append(str(serializers.data.get(i)))
+    labels = [i for i in serializers.data]
+    values = [str(serializers.data.get(i)) for i in serializers.data]
     return labels, values
 
 def meanTempSearch(country, year):
-    labels=[]
-    values = []
     maxTemp = MeanTemp.objects.filter(country=country, year=year).first()
     serializers = GetMeanTempSerializer(maxTemp)
-    for i in serializers.data:
-        labels.append(i)
-        values.append(str(serializers.data.get(i)))
+    labels = [i for i in serializers.data]
+    values = [str(serializers.data.get(i)) for i in serializers.data]
     return labels, values
 
 def rainFallSearch(country, year):
-    labels=[]
-    values = []
     maxTemp = Rainfall.objects.filter(country=country, year=year).first()
     serializers = GetRainfallSerializer(maxTemp)
-    for i in serializers.data:
-        labels.append(i)
-        values.append(str(serializers.data.get(i)))
+    labels = [i for i in serializers.data]
+    values = [str(serializers.data.get(i)) for i in serializers.data]
     return labels, values
 
 def sunshineSearch(country, year):
-    labels=[]
-    values = []
     maxTemp = Sunshine.objects.filter(country=country, year=year).first()
     serializers = GetSunshineSerializer(maxTemp)
-    for i in serializers.data:
-        labels.append(i)
-        values.append(str(serializers.data.get(i)))
+    labels = [i for i in serializers.data]
+    values = [str(serializers.data.get(i)) for i in serializers.data]
     return labels, values
 
 @api_view(['GET'])
