@@ -6,7 +6,7 @@ angular.module('routerApp')
 
         //Get year list for select tag
         function get_years() {
-            $http.get('http://127.0.0.1:8000/api/get_years')
+            $http.get('http://18.217.244.65:8080/api/get_years')
                 .then(function(res, err) {
                     if (res) {
                         $scope.years = res.data.years
@@ -36,7 +36,7 @@ angular.module('routerApp')
 
             $scope.loading = true;
             //call api
-            $http.get('http://127.0.0.1:8000/api/get_data/' + country_attribute + '/' + year_attribute)
+            $http.get('http://18.217.244.65:8080/api/get_data/' + country_attribute + '/' + year_attribute)
 
                 .then(function success(response) {
 
@@ -73,7 +73,7 @@ angular.module('routerApp')
         $scope.save_new_data = function() {
             $scope.loading = true;
             $scope.save_data = false
-            $http.post('http://127.0.0.1:8000/api/save_data').then(function(res, err) {
+            $http.post('http://18.217.244.65:8080/api/save_data').then(function(res, err) {
                 if (res) {
                     $scope.save_data = true
                     console.log(res)
