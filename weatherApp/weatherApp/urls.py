@@ -19,7 +19,12 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
 
+
+# api_urls=[
+# 	url(r'^', include('app.urls', namespace='app'))
+# ]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('app.urls')),
+    path('api/', include(('app.urls', 'app'), namespace='app')),
 ]

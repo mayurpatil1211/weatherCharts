@@ -3,10 +3,10 @@ from . import views
 
 
 urlpatterns=[
-	url(r'^save_data', views.save_data),
-	url(r'^get_data/$', views.get_data),
-	url(r'^get_data/(?P<country>\w{0,50})/(?P<year>[0-9]+)$', views.get_data),
-	url(r'^get_data/(?P<country>\w{0,50})$', views.get_data),
-	url(r'^get_years', views.get_year),
+	url(r'^save_data', views.DataSaveView.as_view(), name='save_data'),
+	url(r'^get_data/$', views.GetDataView.as_view(), name='get_data'),
+	url(r'^get_data/(?P<country>\w{0,50})/(?P<year>[0-9]+)$', views.GetDataView.as_view(), name='get_data_country_year'),
+	url(r'^get_data/(?P<country>\w{0,50})$', views.GetDataView.as_view()),
+	url(r'^get_years', views.GetYearView.as_view(), name='get_years'),
 	
 ]

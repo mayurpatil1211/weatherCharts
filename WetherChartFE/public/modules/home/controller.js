@@ -1,12 +1,12 @@
 angular.module('routerApp')
-    .controller('readingController', ['$scope', '$http', '$timeout', '$location', function($scope, $http, $timeout, $location) {
+    .controller('readingController', ['$scope', '$http', '$timeout', '$location','$route', function($scope, $http, $timeout, $location, $route) {
         
         $scope.save_data = true
         $scope.loadme = false
 
         //Get year list for select tag
         function get_years() {
-            $http.get('http://18.217.244.65:8080/api/get_years')
+            $http.get('http://127.0.0.1:8000/api/get_years')
                 .then(function(res, err) {
                     if (res) {
                         $scope.years = res.data.years
@@ -21,8 +21,6 @@ angular.module('routerApp')
 
         //Filter data or get data on app init
         $scope.startFilter = function(filter) {
-
-            console.log($scope.filter)
             if ($scope.filter) {
                 //get filter attributes from view
                 var year_attribute = $scope.filter.year;
@@ -36,7 +34,7 @@ angular.module('routerApp')
 
             $scope.loading = true;
             //call api
-            $http.get('http://18.217.244.65:8080/api/get_data/' + country_attribute + '/' + year_attribute)
+            $http.get('http://127.0.0.1:8000/api/get_data/' + country_attribute + '/' + year_attribute)
 
                 .then(function success(response) {
 
@@ -59,11 +57,11 @@ angular.module('routerApp')
 
                     $scope.sunshinelabels = $scope.message.sunshine.labels;
                     $scope.sunshinedata = $scope.message.sunshine.value;
+                    
                     $scope.loading = false;
                     $scope.loadme = true
                 }, function error(response) {
                     $scope.loading = false;
-                    console.log(response)
                 });
         }
         //call function on app init
@@ -73,10 +71,9 @@ angular.module('routerApp')
         $scope.save_new_data = function() {
             $scope.loading = true;
             $scope.save_data = false
-            $http.post('http://18.217.244.65:8080/api/save_data').then(function(res, err) {
+            $http.post('http://127.0.0.1:8000/api/save_data').then(function(res, err) {
                 if (res) {
                     $scope.save_data = true
-                    console.log(res)
                     $scope.errorMsg = false
                     $scope.successMsg = res.data.message;
                     $scope.loadme = true
@@ -85,12 +82,12 @@ angular.module('routerApp')
                     $timeout(function() {
                         $scope.successMsg = false
                         $location.path('/readings');
+                        $route.reload();
                     }, 2000);
 
                 } else {
                     $scope.loading = false;
-                    $scope.save_data = true
-                    console.log('Failed to Save New Data')
+                    $scope.save_data = true;
                     $scope.successMsg = false
                     $scope.errorMsg = err.data.message;
                     $scope.loadme = true

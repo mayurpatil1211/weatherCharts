@@ -29,6 +29,9 @@ class MaxTemp(models.Model):
 	aut = models.CharField(max_length=50, null=True, blank=True)
 	ann = models.CharField(max_length=50, null=True, blank=True)
 
+	def __str__(self):
+		return self.country.country+' '+str(self.year)
+
 
 
 
@@ -53,6 +56,9 @@ class MinTemp(models.Model):
 	aut = models.CharField(max_length=50, null=True, blank=True)
 	ann = models.CharField(max_length=50, null=True, blank=True)
 
+	def __str__(self):
+		return self.country.country+' '+str(self.year)
+
 
 class MeanTemp(models.Model):
 	country = models.ForeignKey('Countries', on_delete=models.SET_NULL, null=True, related_name='contryMeanTemp')
@@ -74,6 +80,9 @@ class MeanTemp(models.Model):
 	summ = models.CharField(max_length=50, null=True, blank=True)
 	aut = models.CharField(max_length=50, null=True, blank=True)
 	ann = models.CharField(max_length=50, null=True, blank=True)
+
+	def __str__(self):
+		return self.country.country+' '+str(self.year)
 
 
 class Rainfall(models.Model):
@@ -97,6 +106,9 @@ class Rainfall(models.Model):
 	aut = models.CharField(max_length=50, null=True, blank=True)
 	ann = models.CharField(max_length=50, null=True, blank=True)
 
+	def __str__(self):
+		return self.country.country+' '+str(self.year)
+
 
 class Sunshine(models.Model):
 	country = models.ForeignKey('Countries', on_delete=models.SET_NULL, null=True, related_name='contrySunshine')
@@ -118,3 +130,6 @@ class Sunshine(models.Model):
 	summ = models.CharField(max_length=50, null=True, blank=True)
 	aut = models.CharField(max_length=50, null=True, blank=True)
 	ann = models.CharField(max_length=50, null=True, blank=True)
+
+	def __str__(self):
+		return self.country.country+' '+str(self.year)
